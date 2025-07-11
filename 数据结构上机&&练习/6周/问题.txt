@@ -1,0 +1,125 @@
+1.【问题描述】用单链表保存m个整数，结点结构为：data数据域 next指针域；请设计算法，对于链表中data的绝对值相等的结点，仅仅保留第一次出现的结点而删除绝对值相等的结点。(请自行分析算法的时间复杂度和空间复杂度，作为注释附在程序中，未分析的同学扣5分）
+【输入形式】
+输入若干个整数 ，以-1结束
+【输出形式】
+输出删除之后的单链表
+【样例输入】 
+21 -15 -15 -7 15  -1
+【样例输出】
+21 -15 -7
+
+用单链表保存m个整数，原题条件数据域的绝对值小于问题规模，即|data|<=n(n为问题规模，正整数），这一题是要求时间复杂度尽可能高效的算法。
+思路：可以用空间换时间，时间复杂度O（m），（m为数据域的最大值），空间复杂度O（n）
+实现：借用数组num, 其中，num[m]为1，表示数据m（绝对值）在链表中已经存在，删除该结点；若为0则表示不存在，可以保留该结点
+
+
+
+2.【问题描述】用单链表存储一元多项式（数据结点按照指数从小到大排序），编写算法实现两个一元多项式相加。
+【输入形式】分别输入两个多项式各项的系数和指数，以-100作为输入结束
+【输出形式】输出多项式的和
+【样例输入】
+ 1 3 2 4 3 5 -100
+ 2 3 4 5 -100
+【样例输出】
+ 3 3 2 4 7 5
+
+
+
+3. 2009-41【问题描述】给定一个带头结点的单链表，在不改变单链表的前提下，设计一个尽可能高效的算法，查找链表中倒数第K个位置上的结点（K为正整数），若查找成功，输出该结点的data域的值，返回1；否则，返回0；   
+注意：请自行分析时间复杂度和空间复杂度，作为注释附在程序代码中提交
+【输入形式】
+输入若干个整数，以-1结束
+输入K的值
+【输出形式】
+值（如果不存在，输出error）
+【样例输入】
+1 3 5 6 7 -1
+2
+【样例输出】
+6
+
+
+
+链表的建立和输出函数，我帮你们写好了，只能自行增加一个函数
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType;
+typedef struct LNode {
+    ElemType data;
+    struct LNode *next;
+}LinkNode;
+
+//建立单链表 
+LinkNode* ListCreate()
+{
+    LinkNode *head; int x;
+    head = (LinkNode *)malloc(sizeof(LinkNode));
+    head->next = NULL;
+    LinkNode *p = head, *tail = head, *s;
+    while (1)
+    {
+        scanf("%d", &x);
+        if (x == -1) break;
+        s = (LinkNode*)malloc(sizeof(LinkNode));
+        s->data = x;
+        s->next = NULL;
+        tail->next = s;
+        tail = s;
+    }
+    return head;
+}
+//输出单链表 
+void printList(LinkNode *L)
+{								
+    LinkNode *p;
+    p = L->next;
+    while (p)
+    {
+        printf("%d", p->data);
+        if (p->next) {
+            printf(" ");
+        }
+        p = p->next;
+    }
+    printf("\n");
+}
+
+/*void DeleteElem(LinkNode *L)
+{
+	if(L==NULL)	exit -1;
+	LinkNode *p;								//嵌套循环，执行次数与1*2+2*3...(n-1)n成比例关系，时间复杂度为O(n^2);
+	while(p!=NULL){							//定义指针p,pre,curr,空间复杂度为O(1);
+		LinkNode *pre=p,*curr=p->next;
+		while(q!=NULL)
+		{
+			if(fabs(p->data)==fabs(curr->data)){
+			pre->next=curr->next;
+			free(curr);
+			curr=pre->next;
+			}
+			else pre=pre->next;curr=curr->next;
+		}
+		free(pre);
+		free(curr);
+	p=p->next;
+	}
+}*/
+
+
+/* 定义指针p，q，若pq之间相差k个结点，当p移动到末尾，即指向空时，q即为所求
+p、q均指向首结点，循环移动p，当p移动到第K个结点时，q开始移动  */
+int locate_k(LinkNode *L, int k) {
+    
+    // 请添加 
+int main()
+{
+    LinkNode *L;
+    int k;
+    L = ListCreate();
+    printList(L);
+    scanf("%d", &k);
+    //题三locate_k(L, k);
+    system("pause");
+    return 0;
+}
+1，3题均只能在我给的程序里面添加内容，不是按这个要求执行的，我都要扣分哦，第一题，我给了locate_k，第二题，把locate_k删除，自行添加一个函数实现算法要求哈
