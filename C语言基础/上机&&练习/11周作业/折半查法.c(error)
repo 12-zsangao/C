@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+	int a[15]={1,4,9,13,21,34,55,89,144,233,377,570,671,703,812};
+	int b,i;
+	scanf("%d",&b);
+	if(b>a[7])
+	{
+		for(i=8;i<15;i++)
+			{
+			if(b==a[i]) 
+			{
+				printf("The position of %d is at (%d).",b,i);
+			break;
+			}
+			}
+			//printf("The position of %d is at (%d).",b,i);
+	}
+		else if(b<a[7])
+		{
+		for(i=0;i<7;i++)
+			{
+			if(b==a[i])
+			{
+				printf("The position of %d is at (%d).",b,i);
+			break;
+			}
+			}
+			//printf("The position of %d is at (%d).",b,i);
+			
+		}
+			else if(b==a[7])
+					printf("The position of 144 is at (7).");
+					else printf("%d is not inside this array.",b);
+	return 0;
+}
